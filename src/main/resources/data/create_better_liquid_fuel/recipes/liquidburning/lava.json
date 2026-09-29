@@ -1,0 +1,6 @@
+{
+  "type": "create_better_liquid_fuel:liquidburning",
+  "fluid": "minecraft:lava",
+  "burntime": 20000,
+  "superheattime": 0
+}
