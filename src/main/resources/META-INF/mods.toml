@@ -35,3 +35,12 @@ description='''让 Create 的烈焰人燃烧器支持液体燃料：1000 mB 储�
     versionRange="${create_version_range}"
     ordering="NONE"
     side="BOTH"
+
+# JEI 是软依赖：装了就启用配方查看兼容，没装时 Forge 静默跳过、不拦启动。
+# versionRange 用 "*" 而不是卡版本下限——软依赖没必要因为玩家 JEI 版本偏旧就报依赖错误。
+[[dependencies.${mod_id}]]
+    modId="jei"
+    mandatory=false
+    versionRange="*"
+    ordering="NONE"
+    side="CLIENT"

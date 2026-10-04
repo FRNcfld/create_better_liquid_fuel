@@ -109,10 +109,19 @@ repositories {
     maven { url = "https://maven.createmod.net" }        // Create, Ponder, Flywheel
     maven { url = "https://maven.ithundxr.dev/mirror" }  // Registrate
 
-    // JEI（可选前置）需要时再打开对应的依赖：
-    // maven { name = "Progwml6's maven"; url = "https://dvs1.progwml6.com/files/maven/" }
-    // maven { name = "Jared's maven"; url = "https://maven.blamejared.com/" }
-    // maven { name = "ModMaven"; url = "https://modmaven.dev" }
+    // JEI（可选前置）：三个仓库互为镜像，任一可用即可解析
+    maven {
+        name = "Progwml6's maven"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven {
+        name = "Jared's maven"
+        url = "https://maven.blamejared.com/"
+    }
+    maven {
+        name = "ModMaven"
+        url = "https://modmaven.dev"
+    }
 }
 
 dependencies {
@@ -126,6 +135,18 @@ dependencies {
     compileOnly(fg.deobf("dev.engine-room.flywheel:flywheel-forge-api-${minecraft_version}:${flywheel_version}"))
     runtimeOnly(fg.deobf("dev.engine-room.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}"))
     implementation(fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}"))
+
+    // MixinExtras 是 Create 6.0 的 mixin 依赖（如 BuiltInRegistriesMixin 使用 @WrapOperation）。
+    // slim 分类器把 Create 内嵌库剥离了，开发环境若不补上，Create 的 mixin 会在应用时抛
+    // ClassMetadataNotFoundException: com.llamalad7.mixinextras.injector.wrapoperation.Operation。
+    // 本 mod 自身不使用 MixinExtras，且生产环境由 Create 的 jarJar 提供，故只补 dev classpath。
+    runtimeOnly "io.github.llamalad7:mixinextras-forge:${mixinextras_version}"
+
+    // JEI 是可选前置（mods.toml 里 mandatory=false）：编译期只用 API，运行期用完整 jar。
+    // 未安装 JEI 的整合包不加载这些类，不影响启动。
+    compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}"))
+    compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"))
+    runtimeOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}"))
 
     // Mixin 注解处理器：生成 refmap（本 mod 的 mixin 目标是 Create 自己的类，
     // 全部使用 remap = false，因此 refmap 为空，但仍需注册 mixin 配置）

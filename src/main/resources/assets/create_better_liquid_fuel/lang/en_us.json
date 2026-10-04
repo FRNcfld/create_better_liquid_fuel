@@ -1,0 +1,9 @@
+{
+  "create_better_liquid_fuel.jei.liquid_burning": "Liquid Fuel Burning",
+  "create_better_liquid_fuel.jei.intensity": "Burn Intensity: %s",
+  "create_better_liquid_fuel.jei.intensity.normal": "Normal",
+  "create_better_liquid_fuel.jei.intensity.superheat": "Superheated",
+  "create_better_liquid_fuel.jei.burn_time": "Burn Time: %s s",
+  "create_better_liquid_fuel.jei.superheat_time": "Superheat: %s s",
+  "create_better_liquid_fuel.jei.ember_time": "Ember Time: %s s"
+}

@@ -1,0 +1,9 @@
+{
+  "create_better_liquid_fuel.jei.liquid_burning": "液体燃料燃烧",
+  "create_better_liquid_fuel.jei.intensity": "燃烧等级: %s",
+  "create_better_liquid_fuel.jei.intensity.normal": "普通燃烧",
+  "create_better_liquid_fuel.jei.intensity.superheat": "超级燃烧",
+  "create_better_liquid_fuel.jei.burn_time": "总燃烧时间: %s 秒",
+  "create_better_liquid_fuel.jei.superheat_time": "超级燃烧时间: %s 秒",
+  "create_better_liquid_fuel.jei.ember_time": "普通燃烧时间: %s 秒"
+}
